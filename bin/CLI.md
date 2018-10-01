@@ -28,7 +28,7 @@ Available Commands:
   help        Help about any command
   inspect     Inspect an object of the blockchain
   name        A brief description of your command
-  wallet      Handle wallet operations
+  account     Handle wallet operations
   contract    Compile contracts
   crypto      Crypto helpers
 
@@ -176,6 +176,28 @@ With the aeternity naming system (AENS), you can assign and register a name to y
 These names have an expiration period, after which they can be transferred to another account.
 For more information, see [The Æternity Naming System (AENS)](https://dev.aepps.com/aepp-sdk-docs/AENS-Python.html) and [Aeternity Naming System](https://github.com/aeternity/protocol/blob/master/AENS.md) docs.  
 
+``` 
+$ ./aecli.js  name
+``` 
+  Usage: aecli-name [options] [command]
+
+  Options:
+
+    -H, --host [hostname]             Node to connect to (default: https://localhost:3013)
+    -U, --internalUrl [internal]      Node to connect to(internal)
+    -P, --password [password]                Wallet Password
+    -N, --nameTtl [nameTtl]                  Name life Ttl (default: 500)
+    -T, --ttl [ttl]                          Life Ttl (default: 50000)
+    --json [json]                            Print result in json format
+    -h, --help                               output usage information
+
+  Commands:
+
+    claim <wallet_path> <name>               Claim a domain name
+    revoke <wallet_path> <name>              Claim a domain name
+    transfer <wallet_path> <name> <address>  Transfer a name to another account
+    update <wallet_path> <name> <address>    Update a name pointer
+
 #### claim
 
 Create and register a name for your account (public key).
@@ -184,22 +206,51 @@ $ aecli wallet mywallet name 'testname.aet' claim
 ``` 
 
 #### revoke
-TBD
+
+You can delete your name using the following command:
+``` 
+$ aecli wallet mywallet name 'testname.aet' revoke
+``` 
 
 #### transfer
 
-Transfer a name to another account or contract.
+Transfer a name to another account or contract:
 TBD
 
 #### update
 
-Update a name
+Use this command to update a name:
 TBD
 
 ## The contracts group 
 
+A smart contract is a computer protocol intended to digitally facilitate, verify, or enforce the negotiation or performance of a contract. Smart contracts allow the performance of credible transactions without third parties. These transactions are trackable and irreversible.
+
+The aim of smart contracts is to provide security that is superior to traditional contract law and to reduce other transaction costs associated with contracting. 
+
+``` 
+$ ./aecli.js  contract
+``` 
+  Usage: aecli-contract [options] [command]
+
+  Options:
+
+    -H, --host [hostname]             Node to connect to (default: https://localhost:3013)
+    -U, --internalUrl [internal]      Node to connect to(internal)
+    -T, --ttl [ttl]                   Validity of the transaction in number of blocks (default forever) (default: 50000)
+    --json [json]                     Print result in json format
+    -h, --help                        output usage information
+
+  Commands:
+
+    compile <file>                                     Compile a contract
+    call [options] <wallet_path> <desc_path>[args...]  Execute a function of the contract
+    deploy [options] <wallet_path> <contract_path>     Deploy a contract on the chain
+
+
 #### deploy
-TBD
+
+To deploy a contract, run the following:
 
 #### call
 
