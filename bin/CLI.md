@@ -50,7 +50,7 @@ The general groupings of commands are:
 - `help` does what one would expect and is described here no further.
 - `inspect` allows you to look at the objects on the blockchain.
 - `name` allows interaction with the naming system.
-- `wallet` commands cover a set of functions which operate with a keypair, from transferring tokens to registering names to invoking smart contracts.
+- `account` commands cover a set of functions which operate with a keypair, from transferring tokens to registering names to invoking smart contracts.
 - `oracle` allows you to interact with the oracles.
 - `contract` allows to compile the smart contracts.
 
@@ -119,8 +119,8 @@ Version___________________________________________ 23
     SenderID______________________________________ ak_2a1j2Mk9YSmC1gioUq4PWRm3bsv887MbuRVwyv4KaUGoR1eiKi
     TTL___________________________________________ 1182
 ```
-## Wallet commands
-The wallet commands are those which create and report on key pairs, and all of the operations which payments require. To perform transactions within aeternity, you need to have at least two wallets with some coins on their accounts. Using the WALLET commands, you can create a wallet (with a password or without it), add some coins to it, send coins, and view the wallet’s address (public key).
+## Account (wallet) commands
+The account (wallet) commands are those which create and report on key pairs, and all of the operations which payments require. To perform transactions within aeternity, you need to have at least two wallets with some coins on their accounts. Using the WALLET commands, you can create a wallet (with a password or without it), add some coins to it, send coins, and view the wallet’s address (public key).
 
 #### create
 
@@ -176,6 +176,7 @@ With the aeternity naming system (AENS), you can assign and register a name to y
 These names have an expiration period, after which they can be transferred to another account.
 For more information, see [The Æternity Naming System (AENS)](https://dev.aepps.com/aepp-sdk-docs/AENS-Python.html) and [Aeternity Naming System](https://github.com/aeternity/protocol/blob/master/AENS.md) docs.  
 
+The name group consists of the following commands and options:
 ``` 
 $ ./aecli.js  name
 ``` 
@@ -194,40 +195,43 @@ $ ./aecli.js  name
   Commands:
 
     claim <wallet_path> <name>               Claim a domain name
-    revoke <wallet_path> <name>              Claim a domain name
+    revoke <wallet_path> <name>              Revoke a domain name
     transfer <wallet_path> <name> <address>  Transfer a name to another account
     update <wallet_path> <name> <address>    Update a name pointer
 
 #### claim
 
-Create and register a name for your account (public key).
+Create and register a name for your account (public key):
 ``` 
-$ aecli wallet mywallet name 'testname.aet' claim
+$ aecli 
 ``` 
 
 #### revoke
 
 You can delete your name using the following command:
 ``` 
-$ aecli wallet mywallet name 'testname.aet' revoke
+$ aecli 
 ``` 
 
 #### transfer
 
-Transfer a name to another account or contract:
-TBD
+You can transfer a name to another account or contract:
+``` 
+$ aecli
+``` 
 
 #### update
 
 Use this command to update a name:
-TBD
+``` 
+$ aecli
+``` 
 
 ## The contracts group 
 
-A smart contract is a computer protocol intended to digitally facilitate, verify, or enforce the negotiation or performance of a contract. Smart contracts allow the performance of credible transactions without third parties. These transactions are trackable and irreversible.
+A smart contract is a computer protocol intended to digitally facilitate, verify, or enforce the negotiation or performance of a contract. Smart contracts allow the performance of credible transactions without third parties. These transactions are trackable and irreversible. The aim of smart contracts is to provide security that is superior to traditional contract law and to reduce other transaction costs associated with contracting. 
 
-The aim of smart contracts is to provide security that is superior to traditional contract law and to reduce other transaction costs associated with contracting. 
-
+The contracts group consists of the following commands and options:
 ``` 
 $ ./aecli.js  contract
 ``` 
@@ -247,12 +251,24 @@ $ ./aecli.js  contract
     call [options] <wallet_path> <desc_path>[args...]  Execute a function of the contract
     deploy [options] <wallet_path> <contract_path>     Deploy a contract on the chain
 
+#### compile
+
+To compile a contract, run the following:
+``` 
+$ aecli
+``` 
 
 #### deploy
 
 To deploy a contract, run the following:
+``` 
+$ aecli
+``` 
 
 #### call
 
-TBD
+To execute a function of the contract, run:
 
+``` 
+$ aecli
+``` 
