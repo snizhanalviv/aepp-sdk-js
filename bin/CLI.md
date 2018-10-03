@@ -68,6 +68,7 @@ Available Commands:
   play        Query the blocks of the chain one after the other
   top         Query the top block of the chain
   version     Get the status and version of the node running the chain
+  mempool     Get memory pool of chain (transactions, that are not mined yet)
 ```
 These commands display basic information about the blockchain and require little explanation. Play moves backwards through the blockchain displaying blocks and transactions.
 
@@ -126,50 +127,58 @@ The account (wallet) commands are those which create and report on key pairs, an
 
 Use this command to create a new wallet.
 ``` 
-$ aecli wallet mywallet create
+$ aecli account create test --password test
  ```
-Specify a password for accessing your wallet or just press Enter if you do not want to set a password.
+You can specify a password for accessing your wallet or just press Enter if you do not want to set a password.
 The wallet is created in the specified directory.
 ```
-Wallet created
-Wallet address________________ ak$8w6SZmeFBXC4wJ6CR6jBB36bTz1FWSR1qKCaHo4yueWdjKr1j
-Wallet path___________________ C:\aeternity\aepp-sdk-python-develop\mywallet 
+Wrote /Users/spushkar/Desktop/aepp-sdk-js-develop/bin/test2
+Wrote /Users/spushkar/Desktop/aepp-sdk-js-develop/bin/test2.pub
 ```
-
-Wallet address is your public key.
-Wallet path is the directory where the wallet is created.
-Both public and private keys are located in the _mywallet_ file.
-
-#### save
-
-Using this command, you can pass the private key to generate a wallet with a key pair.
-
-
-``` 
-$ aecli wallet mywallet save
- ```
-
-#### balance
- 
-This command is used to check the balance of your wallet.
-``` 
-$ aecli wallet mywallet balance
-```  
- 
-#### spend
-
-Using this command, you can send coins to another wallet.
-```  
-$ aecli wallet 1wallet spend ak$94TQqDjzwKQYPcCdEAfxcGb3mHq2s9Rm4dybMbDWwiVRwg8RK 10
-```  
-As an option, you can set _--ttl_ parameter, which limits lifespan of this transaction.
+Wallet address is your public key. Wallet path is the directory where the wallet is created.
 
 #### address
 
 View the address (public key) of your wallet using the following command:
 ```  
-$ aecli wallet 1wallet address
+$ aecli account address test
 ``` 
+You will get the following:
+``` 
+Your address is: ak_2a1j2Mk9YSmC1gioUq4PWRm3bsv887MbuRVwyv4KaUGoR1eiKi
+ ```
+#### save
+
+Using this command, you can pass the private key to generate a wallet with a key pair.
+
+``` 
+$ aecli account save test
+ ```
+You will get the following:
+``` 
+Wallet saved
+    Wallet address________________ ak_2a1j2Mk9YSmC1gioUq4PWRm3bsv887MbuRVwyv4KaUGoR1eiKi
+    Wallet path___________________ /Users/spushkar/Desktop/aepp-sdk-js-develop/bin/test
+ ```
+#### balance
+ 
+This command is used to check the balance of your wallet.
+``` 
+$ aecli account balance test
+```  
+You will get the account balance:
+``` 
+Your balance is: 998547
+ ``` 
+#### spend
+
+Using this command, you can send coins to another wallet. Just indicate another account's address and amount which should be sent.
+```  
+$ aecli account spend test --password test ak$94TQqDjzwKQYPcCdEAfxcGb3mHq2s9Rm4dybMbDWwiVRwg8RK 10
+```  
+As an option, you can set _--ttl_ parameter, which limits lifespan of this transaction.
+
+
 ## The name group 
 
 With the aeternity naming system (AENS), you can assign and register a name to your account or oracle. This way, instead of a complex hash, you can use a name you choose.
@@ -203,28 +212,28 @@ $ ./aecli.js  name
 
 Create and register a name for your account (public key):
 ``` 
-$ aecli 
+$ aecli name claim test --password test testname.aet
 ``` 
 
 #### revoke
 
 You can delete your name using the following command:
 ``` 
-$ aecli 
+$ aecli name revoke test --password test testname.aet
 ``` 
 
 #### transfer
 
-You can transfer a name to another account or contract:
+You can transfer a name to another account or contract, just indicate another account's address. You will pass all rights regarding the name to another account:
 ``` 
-$ aecli
+$ aecli name transfer test --password test testname.aet ak_2a1j2Mk9YSmC1gioUq4PWRm3bsv887MbuRVwyv4KaUGoR1eiKi
 ``` 
 
 #### update
 
-Use this command to update a name:
+Use this command to update a name. For example, you can assign it yo another account, but still you will have rights to do other operations with this name :
 ``` 
-$ aecli
+$ aecli name update test --password test testname.aet ak_2a1j2Mk9YSmC1gioUq4PWRm3bsv887MbuRVwyv4KaUGoR1eiKi
 ``` 
 
 ## The contracts group 
@@ -242,6 +251,7 @@ $ ./aecli.js  contract
     -H, --host [hostname]             Node to connect to (default: https://localhost:3013)
     -U, --internalUrl [internal]      Node to connect to(internal)
     -T, --ttl [ttl]                   Validity of the transaction in number of blocks (default forever) (default: 50000)
+    -f --force                        Ignore epoch version compatibility check
     --json [json]                     Print result in json format
     -h, --help                        output usage information
 
@@ -251,24 +261,50 @@ $ ./aecli.js  contract
     call [options] <wallet_path> <desc_path>[args...]  Execute a function of the contract
     deploy [options] <wallet_path> <contract_path>     Deploy a contract on the chain
 
+The `deploy` command  has its options:
+
+   
+    -P, --password [password]    Wallet Password        
+    -I, --init [state]           Deploying contract arguments for constructor function
+    -G --gas [gas]               Amount of gas to deploy the contract
+
+The `call` command also has its option:
+   
+    -P, --password [password]    Wallet Password    
+
 #### compile
 
-To compile a contract, run the following:
+To compile a contract, run the following command adding a file which should be compiled. The file should be stored in `aepp-sdk-js-develop/bin`:
 ``` 
-$ aecli
+$ aecli contract compile file1
 ``` 
 
 #### deploy
 
-To deploy a contract, run the following:
+To deploy a contract, run the following command adding the contract name:
 ``` 
-$ aecli
+$ aecli contract deploy test --password test testContract
 ``` 
-
+You will get the following:
+``` 
+Contract was successfully deployed
+Contract address________________ ct_2HpbSPdiA2csizgKxt8VUE5z2uRvvrE3MPM9VuLNkc5g6wKKHS
+Transaction hash________________ th_2sfW2c8GxJvZK3xzPagjziX9gVYFcJnywcL8vn8wWM5HCWnykE
+Deploy descriptor_______________ testContract.deploy.2a1j2Mk9YSmC1gioUq4PWRm3bsv887MbuRVwyv4KaUGoR1eiKi.json
+``` 
 #### call
 
-To execute a function of the contract, run:
+To execute a function of the contract, run the following command. Json file is stored in `aepp-sdk-js-develop/bin`. `Main` is a function which is executed by this contract, `int 1 2` are numerical values :
 
 ``` 
-$ aecli
+$ aecli contract call test --password test testContract.deploy.2a1j2Mk9YSmC1gioUq4PWRm3bsv887MbuRVwyv4KaUGoR1eiKi.json main int 1 2
+``` 
+You will get the following, where return value is a result of contract execution - it is a sum of values 1 and 2:
+``` 
+Contract address_________ ct_2HpbSPdiA2csizgKxt8VUE5z2uRvvrE3MPM9VuLNkc5g6wKKHS
+Gas price________________ 1
+Gas used_________________ 555
+Return value (encoded)___ 0x0000000000000000000000000000000000000000000000000000000000000003
+Return value (decoded)___ 3
+Return remote type_______ word
 ``` 
