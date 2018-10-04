@@ -1,7 +1,7 @@
 The æternity command line interface
 
 ## Summary
-Each æternity's SDKs feature a command-line interface which you can use to invoke the blockchain's features. All CLIs  have the same name and syntax, which are described here. However, not all of them have a full feature set. An entry in [square brackets] indicates which SDKs support a feature, using the following codes:
+Each æternity's SDKs feature a command-line interface which you can use to invoke the blockchain's features. All CLIs have the same name and syntax, which are described here. However, not all of them have a full feature set. An entry in [square brackets] indicates which SDKs support a feature, using the following codes:
 - G go
 - J javascript
 - P python
@@ -25,7 +25,7 @@ Usage:
 Available Commands:
   chain       Query the state of the chain
   config      Print the configuration of the client
-  help        Help about any command
+  help        Help concerning any command
   inspect     Inspect an object of the blockchain
   name        A brief description of your command
   account     Handle wallet operations
@@ -45,14 +45,14 @@ Use "aecli [command] --help" for more information about a command.
 ```
 
 The general groupings of commands are:
-- `chain`  commands do not require a public or private key and give information about the state of the chain. None of the chain commands change the state of the chain at all.
+- `chain` commands do not require a public or private key and give information about the state of the chain. None of the chain commands changes the state of the chain at all.
 - `config` displays the client's configuration file and can write the configuration to disk.
 - `help` does what one would expect and is described here no further.
 - `inspect` allows you to look at the objects on the blockchain.
 - `name` allows interaction with the naming system.
-- `account` commands cover a set of functions which operate with a keypair, from transferring tokens to registering names to invoking smart contracts.
+- `account` commands cover a set of functions which operate with a key pair, from transferring tokens to registering names and invoking smart contracts.
 - `oracle` allows you to interact with the oracles.
-- `contract` allows to compile the smart contracts.
+- `contract` allows compiling the smart contracts.
 
 
 ## The chain group
@@ -70,7 +70,7 @@ Available Commands:
   version     Get the status and version of the node running the chain
   mempool     Get memory pool of chain (transactions, that are not mined yet)
 ```
-These commands display basic information about the blockchain and require little explanation. Play moves backwards through the blockchain displaying blocks and transactions.
+These commands display basic information about the blockchain and require little explanation. `Play` moves backward through the blockchain displaying blocks and transactions.
 
 ## The inspect group
 The inspect command allows you to see inside various æternity types. Because each æternity type starts with two letters identifying what sort of thing it is, you can throw anything you like at inspect, and it will bravely try to do the right thing.
@@ -92,7 +92,7 @@ Hash______________________________________________ th_2kgDHbvFjZn4nRLrxrimzyjdJz
   Amount__________________________________________ 20000
   Fee_____________________________________________ 1
   Nonce___________________________________________ 1
-  Payload_________________________________________ test tranasaction
+  Payload_________________________________________ test transaction
   RecipientID_____________________________________ ak_2uLM25PWdhrTQfuxgJiM8E5sZREzUoB5iFnukHCz1uAZYBMqwo
   SenderID________________________________________ ak_2a1j2Mk9YSmC1gioUq4PWRm3bsv887MbuRVwyv4KaUGoR1eiKi
 ```
@@ -121,7 +121,7 @@ Version___________________________________________ 23
     TTL___________________________________________ 1182
 ```
 ## Account (wallet) commands
-The account (wallet) commands are those which create and report on key pairs, and all of the operations which payments require. To perform transactions within aeternity, you need to have at least two wallets with some coins on their accounts. Using the WALLET commands, you can create a wallet (with a password or without it), add some coins to it, send coins, and view the wallet’s address (public key).
+The account (wallet) commands are those which create and report on key pairs, and all of the operations which payments require. To perform transactions within aeternity, you need to have at least two wallets with some coins on their accounts. Using the Account commands, you can create a wallet (with a password or without it), add some coins to it, send coins, and view the wallet’s address (public key).
 
 #### create
 
@@ -172,11 +172,11 @@ Your balance is: 998547
  ``` 
 #### spend
 
-Using this command, you can send coins to another wallet. Just indicate another account's address and amount which should be sent.
+Using this command, you can send coins to another wallet. Just indicate another account's address and an amount which should be sent.
 ```  
 $ aecli account spend test --password test ak$94TQqDjzwKQYPcCdEAfxcGb3mHq2s9Rm4dybMbDWwiVRwg8RK 10
 ```  
-As an option, you can set _--ttl_ parameter, which limits lifespan of this transaction.
+As an option, you can set _--ttl_ parameter, which limits the lifespan of this transaction.
 
 
 ## The name group 
@@ -187,7 +187,7 @@ For more information, see [The Æternity Naming System (AENS)](https://dev.aepps
 
 The name group consists of the following commands and options:
 ``` 
-$ ./aecli.js  name
+$ ./aecli.js name
 ``` 
   Usage: aecli-name [options] [command]
 
@@ -231,14 +231,14 @@ $ aecli name transfer test --password test testname.aet ak_2a1j2Mk9YSmC1gioUq4PW
 
 #### update
 
-Use this command to update a name. For example, you can assign it yo another account, but still you will have rights to do other operations with this name :
+Use this command to update a name. For example, you can assign it to another account, but still you will have rights to do other operations with this name:
 ``` 
 $ aecli name update test --password test testname.aet ak_2a1j2Mk9YSmC1gioUq4PWRm3bsv887MbuRVwyv4KaUGoR1eiKi
 ``` 
 
 ## The contracts group 
 
-A smart contract is a computer protocol intended to digitally facilitate, verify, or enforce the negotiation or performance of a contract. Smart contracts allow the performance of credible transactions without third parties. These transactions are trackable and irreversible. The aim of smart contracts is to provide security that is superior to traditional contract law and to reduce other transaction costs associated with contracting. 
+A smart contract is a computer protocol intended to digitally facilitate, verify, or enforce the negotiation or performance of a contract. Smart contracts allow the performance of credible transactions without third parties. These transactions are trackable and irreversible. Smart contracts aim to provide security that is superior to traditional contract law and to reduce other transaction costs associated with contracting. 
 
 The contracts group consists of the following commands and options:
 ``` 
@@ -261,7 +261,7 @@ $ ./aecli.js  contract
     call [options] <wallet_path> <desc_path>[args...]  Execute a function of the contract
     deploy [options] <wallet_path> <contract_path>     Deploy a contract on the chain
 
-The `deploy` command  has its options:
+The `deploy` command has its options:
 
    
     -P, --password [password]    Wallet Password        
