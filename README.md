@@ -34,7 +34,7 @@ check out the [develop branch].
 1. [Usage](#usage)
 2. [Hacking](#hacking)
 3. [API](#api)
-4. [Changelog](#changelog)
+4. [Change log](#change_log)
 5. [License](#license)
 
 
