@@ -34,7 +34,7 @@ check out the [develop branch].
 1. [Usage](#usage)
 2. [Hacking](#hacking)
 3. [API](#api)
-4. [Change log](#change_log)
+4. [Changelog](#changelog)
 5. [License](#license)
 
 
@@ -98,11 +98,11 @@ Here you can find [API] docs.
 
 [API]: docs/api.md
 
-## [Change Log]
+## [Changelog]
 
-Here you can find [Change Log] docs.
+Here you can find [Changelog] docs.
 
-[Change Log]: CHANGELOG.md
+[Changelog]: CHANGELOG.md
 
 ## License
 
