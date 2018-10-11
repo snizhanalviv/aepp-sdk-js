@@ -22,7 +22,7 @@ aepp-sdk is [hosted on GitHub].
 
 #### Disclaimer
 
-This SDK is at an alpha stage where things easily can break. We aim to make our
+This SDK is at an alpha stage where things can easily break. We aim to make our
 alpha releases as stable as possible. Nevertheless, it should not be taken as
 production-ready. To catch up with the more edgy state of development, please
 check out the [develop branch].
@@ -81,7 +81,7 @@ const ae = Aepp()
 ae.then(ae => ae.height()).then(h => console.log(h))
 ```
 
-5. Go check out the [Usage] documentation!
+5. Check out the [Usage] documentation!
 
 [Usage]: docs/usage.md
 
