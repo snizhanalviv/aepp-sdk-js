@@ -81,7 +81,7 @@ const ae = Aepp()
 ae.then(ae => ae.height()).then(h => console.log(h))
 ```
 
-5. Check out the [Usage] documentation!
+5. Check out the [Usage] documentation.
 
 [Usage]: docs/usage.md
 
