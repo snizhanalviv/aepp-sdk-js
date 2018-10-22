@@ -11,7 +11,7 @@ This document describes the installation and usage of the JavaScript SDK.
 
 ## Overview
 
-**Important:** This SDK is at an alpha stage where things easily can break. We aim to make our alpha releases as stable as possible. Nevertheless it should not be taken as production-ready. 
+**Important:** This SDK is at an alpha stage where things easily can break. We aim to make our alpha releases as stable as possible. Nevertheless, it should not be taken as production-ready. 
  
 With this SDK, you can develop apps for the æternity blockchain in JavaScript.
 In particular, you can implement the following:
@@ -62,7 +62,7 @@ the **Creating an Account** section for details.
 To work with æternity, you need to have an account. You can create it by installing its public and private key.
 **Public key** is an ID of your account. You will provide it to other people so that they can send you money.
 **Private key** must be kept secret and secure. It is used for signing your transactions.
-You wallet can include several accounts.
+Your wallet can include several accounts.
  
 You can create an account in one of two ways:
  
@@ -81,7 +81,7 @@ Crypto.genareteKeyPair(name)  // create priv and public key with 'name' current 
  
 After you create an account, add some tokens to your balance. This way you will be able to perform transactions with your wallet.
 1. Go to <https://faucet.aepps.com/>.
-2. Insert you public key, and then click **Top Up**.
+2. Insert your public key, and then click **Top Up**.
 3. Wait several minutes for tokens to come to your balance.
  
 Now you can try sending and receiving money, and checking your balance. For details on these methods, see the following section.
