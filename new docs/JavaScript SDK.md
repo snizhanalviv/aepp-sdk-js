@@ -62,13 +62,13 @@ Depending on your needs, you can choose to work with one of the following AE par
 * Command line tool development <https://dev.aepps.com/aepp-sdk-js/docs/api/ae/cli.md>
  
 An example below illustrates connecting to a system and running a specific method.
-Import `{ Wallet: Ae} from ”@aeternity/aepp-sdk/es/ae/wallet”` using following ways:
+Import { Wallet: Ae} from ”@aeternity/aepp-sdk/es/ae/wallet” using following ways:
 
 1. Set environment variables WALLET_PRIV and WALLET_PUB.
 If you do not yet have the public and private keys, you need to generate them. See
 **Creating an Account** section below for details.
 2. You can pass “keypair” as parameter to Ae init function
-```Ae({url: 'https://sdk-testnet.aepps.com', keypair: { priv: ‘Your priv key’, pub: ‘Your public key’ } })```       
+Ae({url: 'https://sdk-testnet.aepps.com', keypair: { priv: ‘Your priv key’, pub: ‘Your public key’ } })       
 3. In case you do not set keypair or you do not have WALLET_PRIV and WALLET_PUB in your environment, you can still can interact with the Chain but you cannot sign any transaction.
 
 
@@ -84,10 +84,10 @@ You can create an account in one of two ways:
 * Using CLI- run the command  **ae sdk genkey mykeys**
   
 * Using SDK - run the following:
-``` 
-import Crypto from '@aæternity/aepp-sdk/es/utils/crypto'
+ 
+   import Crypto from '@aæternity/aepp-sdk/es/utils/crypto'
 Crypto.genareteKeyPair(name)  // this function generate keyPair and return Object like “{ priv: ‘Your private key’, pub: ‘You public key’ }”
- ```
+ 
 After you create an account, add some tokens to your balance. This way you will be able to perform transactions with your wallet.
 1. Go to <https://faucet.aepps.com/>.
 2. Insert your public key, and then click **Top Up**.
@@ -291,5 +291,27 @@ The same code, using the SDK abstraction (**high-level**):
 ```
 
 ### AENS usage examples
+
+Below you can find AENS claim example:
+```
+const {Cli: Ae} = require('@aeternity/aepp-sdk')
+function claim (domain, {nameTtl, ttl}) {
+    // Init AE client
+    const client = await Ae({ url: 'https://sdk-testnet.aepps.com', keypair: 'your KeyPair Object' })
+    // Create `preclaimName` transaction
+      const { salt, height } = await client.aensPreclaim(domain, { nameTtl, ttl })
+      print('Pre-Claimed')
+
+      // Wait for next block and create `claimName` transaction
+      await client.aensClaim(domain, salt, (height + 1), { nameTtl, ttl })
+      print('Claimed')
+
+      // Update `name` pointer
+      const { id } = await updateNameStatus(domain)(client)
+      const { hash } = await client.aensUpdate(id, await client.address(), { nameTtl, ttl })
+      print('Updated')
+}
+
+```
 
 ### Contracts usage examples
