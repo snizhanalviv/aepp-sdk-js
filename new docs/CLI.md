@@ -11,12 +11,12 @@ So [GP] indicates that a feature is only available in Go and Python.
 
 # Table of Contents
 1. [Overview](#overview)
-2. [General usage](#general_usage)
-3. [The chain group](#the_chain_group)
-4. [The inspect group](#the_inspect_group)
-5. [Account commands](#account_commands)
-6. [The name group](#the_name_group)
-7. [The contracts group](#the_contracts_group)
+2. [General usage](#general-usage)
+3. [The chain group](#the-chain-group)
+4. [The inspect group](#the-inspect-group)
+5. [Account commands](#account-commands)
+6. [The name group](#the-name-group)
+7. [The contracts group](#the-contracts-group)
 
 ## Overview 
 
