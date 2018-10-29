@@ -13,10 +13,9 @@ So [GP] indicates that a feature is only available in Go and Python.
 2. [General usage](#general_usage)
 3. [The chain group](#the_chain_group)
 4. [The inspect group](#the_inspect_group)
-5. [Account(wallet) commands](#account_commands)
+5. [Account commands](#account_commands)
 6. [The name group](#the_name_group)
 7. [The contracts group](#the_contracts_group)
-
 
 
 ## Overview 
@@ -130,7 +129,7 @@ Version___________________________________________ 23
     SenderID______________________________________ ak_2a1j2Mk9YSmC1gioUq4PWRm3bsv887MbuRVwyv4KaUGoR1eiKi
     TTL___________________________________________ 1182
 ```
-## Account (wallet) commands
+## Account commands
 The account (wallet) commands are those which create and report on key pairs, and all of the operations which payments require. To perform transactions within aeternity, you need to have at least two wallets with some coins on their accounts. Using the Account commands, you can create a wallet (with a password or without it), add some coins to it, send coins, and view the wallet’s address (public key).
 
 #### create
