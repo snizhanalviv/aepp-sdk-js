@@ -8,6 +8,7 @@ Each æternity's SDKs feature a command-line interface which you can use to invo
 
 So [GP] indicates that a feature is only available in Go and Python.
 
+
 # Table of Contents
 1. [Overview](#overview)
 2. [General usage](#general_usage)
@@ -16,7 +17,6 @@ So [GP] indicates that a feature is only available in Go and Python.
 5. [Account commands](#account_commands)
 6. [The name group](#the_name_group)
 7. [The contracts group](#the_contracts_group)
-
 
 ## Overview 
 
