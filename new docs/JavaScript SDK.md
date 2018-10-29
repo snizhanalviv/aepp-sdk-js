@@ -121,7 +121,7 @@ the following syntax to load parts of aepp-sdk:
 ```js
 import Aepp from '@aeternity/aepp-sdk/es/ae/aepp'
 
-Aepp({url: 'https://sdk-testnet.aepps.com'}).then(client => {
+Aepp().then(client => {
   client.height().then(height => {
     console.log('Current Block', height)
   })
@@ -151,7 +151,7 @@ The bundle will assign the SDK to a global `var` called `Ae`.
 <body>
   <script src="aepp-sdk.browser.js"></script>
   <script type="text/javascript">
-    Ae.Aepp.default({url: 'https://sdk-testnet.aepps.com'}).then(ae => {
+    Ae.Aepp.default().then(ae => {
       ae.height().then(height => {
         console.log('Current Block', height)
       })
@@ -169,7 +169,7 @@ automatically used if no `/src` suffix is given.
 ```js
 import Aepp from '@aeternity/aepp-sdk/es/ae/aepp'
 
-Aepp({url: 'https://sdk-testnet.aepps.com'}).then(ae => {
+Aepp().then(ae => {
   ae.height().then(height => {
     console.log('Current Block', height)
   })
@@ -216,7 +216,7 @@ yarn add @aeternity/aepp-sdk
 
 <script>
 import Aepp from '@aeternity/aepp-sdk/es/ae/aepp'
-const ae = Aepp({url: 'https://sdk-testnet.aepps.com'})
+const ae = Aepp()
 
 export default {
   name: 'HelloWorld',
@@ -286,15 +286,19 @@ The same code, using the SDK abstraction (**high-level**):
     address: 'PUB_KEY_HERE',
     onTx: confirm, // guard returning boolean
     onChain: confirm, // guard returning boolean
-    onAccount: confirm // guard returning boolean
+    onAccount: confirm // guard returning boolean,
+    onContract: confirm // guard returning boolean
   }).then(ae => ae.spend(parseInt(amount), receiver_pub_key))
 ```
 
 ### AENS usage examples
 
-Below you can find AENS claim example:
+Below you can find AENS examples:
+
+#### Claim (and update)
 ```
 const {Cli: Ae} = require('@aeternity/aepp-sdk')
+
 function claim (domain, {nameTtl, ttl}) {
     // Init AE client
     const client = await Ae({ url: 'https://sdk-testnet.aepps.com', keypair: 'your KeyPair Object' })
@@ -311,7 +315,33 @@ function claim (domain, {nameTtl, ttl}) {
       const { hash } = await client.aensUpdate(id, await client.address(), { nameTtl, ttl })
       print('Updated')
 }
+```
+
+#### Transfer
+```
+function transfer (domain, address, {nameTtl, ttl}) {
+    // Init AE client
+    const client = await Ae({ url: 'https://sdk-testnet.aepps.com', keypair: 'your KeyPair Object' })
+     // Create `transferName` transaction
+      const transferTX = await client.aensTransfer(name.id, address, { ttl, nameTtl, nonce })
+      print('Transfer Success')
+      printUnderscored('Transaction hash', transferTX.hash)
+}
+```
+
+#### Revoke
+```
+function revoke (domain, address, {nameTtl, ttl}) {
+    // Init AE client
+    const client = await Ae({ url: 'https://sdk-testnet.aepps.com', keypair: 'your KeyPair Object' })
+     // Create `transferName` transaction
+      const transferTX = await client.aensTransfer(name.id, address, { ttl, nameTtl, nonce })
+      print('Transfer Success')
+      printUnderscored('Transaction hash', transferTX.hash)
+}
 
 ```
 
 ### Contracts usage examples
+ 
+You can find examples [here](https://rawgit.com/aeternity/aepp-sdk-docs/master/js-sdk-examples/bin/aecontract.html).
