@@ -22,7 +22,10 @@ So [GP] indicates that a feature is only available in Go and Python.
 
 The command-line interface is invoked using the command `aecli`. Depending on where it's installed on your system, you may have to give a path when you invoke it. 
 
+
 ## General usage
+
+
 If you invoke `aecli` with no arguments, it shows basic usage:
 ```
 $ ./aecli 
